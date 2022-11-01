@@ -6,6 +6,7 @@ set(MITK_CONFIG_PACKAGES
 
 set(MITK_CONFIG_PLUGINS
   org.mitk.biomarker.roc
+  org.mitk.cli
   org.mitk.gui.qt.datamanager
   org.mitk.gui.qt.stdmultiwidgeteditor
   org.mitk.planarfigure  

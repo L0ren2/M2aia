@@ -1,15 +1,18 @@
-cli aktuell falsch herum implementiert: 
- - in m2aia gibt es einige programme, welche als cli ausgeführt werden können
+cli aktuell "falsch herum" implementiert: 
+ - in m2aia gibt es einige programme, welche als cli (unabhängig von m2aiaworkbench) ausgeführt werden können
 
 ziel: 
  - in m2aia gibt es ein modul, welches externe script dateien ausführen kann, die dann die commandline module implementieren
 
 fragen: 
- - soll batch processing implementiert werden? wie?
- - soll dieses zu erstellende modul von der cli aus gecalled werden können? 												(vmtl erstmal nicht)
+ - wie kann die ausführung eines anderen programms portierbar gehalten werden? fork/exec gibt es nur auf unix-based, auf windows gibt es createprocess
+ - was ist der korrekte weg, ein (cli) programm auszuführen? (manuelles fork/exec oder posix_spawn)
+ - wie stelle ich sicher, dass das cli script fertig ist, bevor ich versuche die daten zu holen?
+ - wie werden die output-daten des cli scripts eingeholt?
  - soll für jedes script je nach --xml eine eigene gui erstellt werden? 													(vmtl ja)
  - wie wird zwischen python und r unterschieden? beide benötigen einen interpreter. 										(vmtl. via dateiendung)
  - werden binaries unterstützt? wie erfolgt hier die deduktion des "interpreters"? unix executables haben u.U. kein .exe
+
 infos:
  - bei r und python kann durch einen shebang der interpreter angegeben werden, so dass direkt das script ausgeführt werden kann. dies funktioniert aber nur unter unix systemen
  - für windows environments kann die dateiendung (.py, .r) in der registry auf einen interpreter bezogen werden, so dass die datei direkt ausgeführt werden könnte. dazu sind admin rechte nötig. 
@@ -17,4 +20,5 @@ infos:
  - durch `./scriptfile.r --xml` kann die xml-description für diese datei eingelesen und eine gui für die parameter erzeugt werden. 
  - es kann auch ein button erstellt werden, mit welchem das script mit den parametern ausgeführt werden kann. 
  - das script kann dann seine berechnung bzw seine operationen durchführen und das ergebnis zurück an m2aia liefern. das ergebnis muss dann in geeigneter form dargestellt werden.
+ - mitkworkbench besitzt ein cli-module, welches auf dem ctk basiert, ich habe es allerdings nicht zum laufen bekommen, da ich damit kein cli modul auswählen konnte
 
